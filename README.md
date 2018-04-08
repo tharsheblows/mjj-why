@@ -10,7 +10,18 @@ The blocks are in src/blocks. (There's currently only one, it might stay this wa
 - editor.scss: editor specific scss that gets magically transformed by the wonderful Create Guten Block script
 - style.scss: styles loaded on front and back end, same magic as above
 
+You shouldn't need to run npm install to make this work, I've included all the necessary scripts.
+
 --- 
+
+## Blocks
+
+### circle-text
+For when your client wants to put three red circles with text and links on random pages as callouts. The hover should be pink.
+
+![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/circle-text/circle-text.png) 
+
+---
 
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 

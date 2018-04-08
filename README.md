@@ -1,3 +1,17 @@
+
+# Blocks of little weird layouty bits
+
+For when clients want weird little designs in their site.
+
+The blocks are in src/blocks. (There's currently only one, it might stay this way forever.) Each has the following files:
+- block.js: registers the block
+- block.php: registers the block in php and handles server side rendering
+- component.jsx: the component used in edit when registering the block in block.js and also used as a template for the server side render (after a bit of regex)
+- editor.scss: editor specific scss that gets magically transformed by the wonderful Create Guten Block script
+- style.scss: styles loaded on front and back end, same magic as above
+
+--- 
+
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 
 Below you will find some information on how to run scripts.

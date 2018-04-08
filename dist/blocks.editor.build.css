@@ -1,0 +1,18 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-mjj-why-circle-text .wrapper {
+  float: left;
+  margin: 10px; }
+  .wp-block-mjj-why-circle-text .wrapper .circle {
+    float: none;
+    margin: 0 auto; }

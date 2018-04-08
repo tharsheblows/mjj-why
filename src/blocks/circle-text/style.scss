@@ -1,0 +1,47 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-mjj-why-circle-text  {
+
+	font-family: $fonts;
+	margin: 10px auto;
+	overflow: hidden;
+
+	.circle {
+	 	width: 150px;
+	 	height: 150px;
+	 	border-radius: 50%;
+	 	font-size: 20px;
+	 	background: $red;
+	 	line-height: 150px;
+	 	text-align: center;
+	 	color: white;
+	 	float: left;
+	 	margin: 10px;
+	}
+
+	.circle:hover{
+		background: deeppink;
+	}
+
+	.circle a{
+		color: white;
+		text-decoration: none;
+		box-shadow: none;
+
+		&:hover{
+			box-shadow: none;
+			color: white;
+		}
+	}
+	
+	.circle span {
+		display: inline-block;
+		vertical-align: middle;
+		line-height: normal;
+		padding: 0 25px;
+	}
+}

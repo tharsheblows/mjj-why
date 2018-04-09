@@ -12,6 +12,10 @@ The blocks are in src/blocks. (There's currently only one, it might stay this wa
 
 You shouldn't need to run npm install to make this work, I've included all the necessary scripts.
 
+NB: This isn't for production use at all, it's not responsive for one thing and there are many others. This is mainly
+1. to show how Gutenberg will make editing easier compared to metaboxes
+2. for me to try out a certain way of making blocks (server side render with React Component used in both editor and, with a bit of regex, on client side)
+
 --- 
 
 ## Blocks

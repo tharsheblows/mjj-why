@@ -10,7 +10,8 @@
 
 // this should be a list of directory names in blocks
 $block_directories = array(
-	'circle-text'
+	'circle-text',
+	'github-gist'
 );
 
 foreach( $block_directories as $block_directory ){

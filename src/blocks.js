@@ -10,3 +10,4 @@
  */
 
 import './blocks/circle-text/block.js';
+import './blocks/github-gist/block.js';

@@ -16,3 +16,9 @@
   .wp-block-mjj-why-circle-text .wrapper .circle {
     float: none;
     margin: 0 auto; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/

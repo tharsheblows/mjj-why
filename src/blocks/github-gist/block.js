@@ -15,8 +15,82 @@ const {
 	TextControl
 } = wp.components
 
+const { Component } = wp.element;
+
 import MJJGithubGist from './component.jsx'
 
+// this approach is from https://www.ibenic.com/create-gutenberg-block-displaying-post/
+class MJJGithubGistEdit extends Component {
+
+	static getInitialState( uncheckedUrl, gistUrl ) {
+
+		gistUrl = ( gistUrl ) || ''
+		uncheckedUrl = (uncheckedUrl ) || ''
+
+		return {
+			uncheckedUrl: uncheckedUrl,
+			gistUrl: gistUrl
+		}
+	}
+
+
+	constructor () {
+
+		super( ...arguments )
+		this.state = this.constructor.getInitialState( this.props.attributes.uncheckedUrl, this.props.attributes.gistUrl ) // set the initial state of uncheckedUrl
+
+		this.getGistUrl = this.getGistUrl.bind(this) // allow me to use "this" in the function
+
+		this.onChangeUrl = this.onChangeUrl.bind(this)
+		this.getGistUrl( this.props.attributes.uncheckedUrl ) 
+	}
+
+	getGistUrl () {
+
+		let newGistUrl = ( this.state.uncheckedUrl.includes( 'gist.github.com' ) ) ? this.state.uncheckedUrl : '' // there could be more robust checks here
+		// again, setState callbacks because it wasn't updating quite right on paste
+		this.setState( 
+			{ gistUrl: newGistUrl },
+			() => {
+				this.props.setAttributes( {
+					gistUrl: newGistUrl
+				} )
+			}
+		)
+	}
+
+	onChangeUrl ( newUrl ) {
+		// so these are callbacks because it wasn't updating quite right on past
+		this.setState( 
+			{ uncheckedUrl: newUrl }, 
+			() => {
+				this.props.setAttributes( {
+					uncheckedUrl: newUrl
+				} )
+				this.getGistUrl()
+			}
+		)
+
+	}
+
+	render () {
+		return (
+		( !! this.props.focus || this.state.gistUrl.length == 0 )
+			?
+				<div> 
+  					<TextControl
+  						label={ __( 'Github gist url' ) }
+  						value={ this.props.attributes.uncheckedUrl }
+  						onChange={ this.onChangeUrl }
+  					/>
+  					<MJJGithubGist url={ this.state.gistUrl } id={ this.props.id } />
+  				</div>
+			:
+				<MJJGithubGist url={ this.state.gistUrl } id={ this.props.id } />
+		)
+	}	
+
+}
 
 /**
  * Register: aa Gutenberg Block.
@@ -46,41 +120,7 @@ registerBlockType( 'mjj-why/github-gist', {
 		}
 	},
 
-	edit: props => {
-
-		const {
-			attributes: {
-				gistUrl,
-				uncheckedUrl
-			},
-			focus,
-			className,
-			setAttributes
-		} = props
-
-		const onChangeUrl = ( newUrl ) => {
-
-			let newGistUrl = ( newUrl.includes( 'gist.github.com' ) ) ? newUrl : '' // there could be more robust checks here
-
-			setAttributes( { gistUrl: newGistUrl } )
-			setAttributes( { uncheckedUrl: newUrl } )
-		}
-
-		return (
-			( !! focus || ! gistUrl )
-				?
-					<div> 
-  						<TextControl
-  							label={ __( 'Github gist url' ) }
-  							value={ uncheckedUrl }
-  							onChange={ onChangeUrl }
-  						/>
-  						<MJJGithubGist url={ gistUrl } id={ props.id } />
-  					</div>
-				:
-					<MJJGithubGist url={ gistUrl } id={ props.id } />
-		)	
-	},
+	edit: MJJGithubGistEdit,
 
 	// what shall we save to the database?
 	save () {

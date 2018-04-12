@@ -15,10 +15,10 @@ const {
 
 class MJJGithubGist extends Component {
 
-	constructor( props ) {
-		super( props );
-		this.id = 'gist-' + props.id
-		console.log( 'MJJGithubGist' )
+	constructor() {
+		super( ...arguments )
+		// this is going to be used as the holder for the gist stuff in setGistData()
+		this.id = 'gist-' + this.props.id
 	}
 
 	setGistData ( url ) {
@@ -40,17 +40,23 @@ class MJJGithubGist extends Component {
 		) }, 10 )
 	}
 
-	componentDidMount () {
+	// And WHEN IT'S UPDATED load the gist stuff
+	componentDidUpdate () {
 		if ( this.props.url ){
 			this.setGistData( this.props.url )
 		}
 	}
+	// When it's mounted, load the gist stuff
+	componentDidMount () {
+		if ( this.props.url ){
+			this.setGistData( this.props.url )
+		}
+	} 
 
 	render () {
+		// I think it needs to change to trigger componentDidUpdate?
 		return (
-
 			<div id={ this.id }></div>
-
 		);
 	}
 }

@@ -25,6 +25,11 @@ For when your client wants to put three red circles with text and links on rando
 
 ![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/circle-text/circle-text.png) 
 
+### github-gist
+This is [Daniel Bachhuber's Github Gist block](https://github.com/pantheon-systems/github-gist-gutenberg-block), almost. I rewrote it in ES6 and it doesn't work as well. It doesn't update except when the block is unselected — you type in the url of a gist then have to unselect it for the gist to show up) whereas Daniel's does this as soon as the url is entered. I'm assuming I've missed out something basic, who knows? Not me. Is it still better than using a metabox or shortcode though? I'm going with yes. (But if you are thinking "No, no it is not" then it's still ok, this gives you a shortcode you can use to do the same thing.)
+
+![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/github-gist/github-gist.png) 
+
 ---
 
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).

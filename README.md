@@ -26,7 +26,11 @@ For when your client wants to put three red circles with text and links on rando
 ![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/circle-text/circle-text.png) 
 
 ### github-gist
-This is [Daniel Bachhuber's Github Gist block](https://github.com/pantheon-systems/github-gist-gutenberg-block), almost. I rewrote it in ES6 and it doesn't work as well. It doesn't update except when the block is unselected — you type in the url of a gist then have to unselect it for the gist to show up) whereas Daniel's does this as soon as the url is entered. I'm assuming I've missed out something basic, who knows? Not me. Is it still better than using a metabox or shortcode though? I'm going with yes. (But if you are thinking "No, no it is not" then it's still ok, this gives you a shortcode you can use to do the same thing.)
+This is [Daniel Bachhuber's Github Gist block](https://github.com/pantheon-systems/github-gist-gutenberg-block), almost. ~~I rewrote it in ES6 and it doesn't work as well. It doesn't update except when the block is unselected — you type in the url of a gist then have to unselect it for the gist to show up) whereas Daniel's does this as soon as the url is entered. I'm assuming I've missed out something basic, who knows? Not me.~~ Is it still better than using a metabox or shortcode though? I'm going with yes. (But if you are thinking "No, no it is not" then it's still ok, this gives you a shortcode you can use to do the same thing.)
+
+edit a bit later: I ended up fixing the issues I was having. [This by Igor Benić](https://www.ibenic.com/create-gutenberg-block-displaying-post/) was super helpful in getting my head around how to handle state. I also needed to use the setState callback to set the attributes properly — they were one step behind. [This was helpful in understanding that](https://medium.learnreact.com/setstate-takes-a-callback-1f71ad5d2296). And, stupidly, I had forgotten that I needed to call componentDidUpdate to, y'know, keep it updated.
+
+All in all, I *highly* recommend doing something similar to learn bits and pieces of anything. I asked Daniel if it was ok if I just copied and pasted some of his code and he was lovely about it. It helped to know where I wanted to go when figuring out how to get there. :) 
 
 ![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/github-gist/github-gist.png) 
 

@@ -23,7 +23,6 @@ require_once plugin_dir_path( __FILE__ ) . 'blocks.php';
  * @since 1.0.0
  */
 function mjj_why_block_assets() {
-	// Styles.
 	wp_enqueue_style(
 		'mjj-why-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.

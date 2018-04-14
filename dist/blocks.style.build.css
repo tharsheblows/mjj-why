@@ -1,1 +1,54 @@
-.wp-block-mjj-why-circle-text{font-family:Verdana,Geneva,sans-serif;margin:10px auto;overflow:hidden}.wp-block-mjj-why-circle-text .circle{width:150px;height:150px;border-radius:50%;font-size:20px;background:#ff4500;line-height:150px;text-align:center;color:white;float:left;margin:10px}.wp-block-mjj-why-circle-text .circle:hover{background:deeppink}.wp-block-mjj-why-circle-text .circle a{color:white;text-decoration:none;-webkit-box-shadow:none;box-shadow:none}.wp-block-mjj-why-circle-text .circle a:hover{-webkit-box-shadow:none;box-shadow:none;color:white}.wp-block-mjj-why-circle-text .circle span{display:inline-block;vertical-align:middle;line-height:normal;padding:0 25px}
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-mjj-why-circle-text {
+  font-family: Verdana, Geneva, sans-serif;
+  margin: 10px auto;
+  overflow: hidden; }
+  .wp-block-mjj-why-circle-text .circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    font-size: 20px;
+    background: orangered;
+    line-height: 150px;
+    text-align: center;
+    color: white;
+    float: left;
+    margin: 10px; }
+  .wp-block-mjj-why-circle-text .circle:hover {
+    background: deeppink; }
+  .wp-block-mjj-why-circle-text .circle a {
+    color: white;
+    text-decoration: none;
+    -webkit-box-shadow: none;
+            box-shadow: none; }
+    .wp-block-mjj-why-circle-text .circle a:hover {
+      -webkit-box-shadow: none;
+              box-shadow: none;
+      color: white; }
+  .wp-block-mjj-why-circle-text .circle span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    padding: 0 25px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/

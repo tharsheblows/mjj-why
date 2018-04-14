@@ -11,7 +11,8 @@
 // this should be a list of directory names in blocks
 $block_directories = array(
 	'circle-text',
-	'github-gist'
+	'github-gist',
+	'code-highlighting'
 );
 
 foreach( $block_directories as $block_directory ){
@@ -32,9 +33,6 @@ function mjj_why_jsx_to_php( $attributes, $jsx ){
 
 
 	$php = str_replace( 'className=', 'class=', $matches[1] ); // make className into class
-
-	error_log( $php, 0 );
-	error_log( print_r( $attributes, true ), 0 );
 
 	// NOTE: this is expecting attributes.whatever so let attributes = this.props.attributes in render function
 	foreach( $attributes as $attribute => $value ){

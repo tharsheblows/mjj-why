@@ -46,9 +46,30 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+div[data-type='mjj-why/code-highlighting'] pre::before {
+  height: 2em; }
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.language-header {
+  padding: 0.5em 1em 0.3em 1em;
+  margin: 1em 0 0 0;
+  color: white; }
+  .language-header.css {
+    background: firebrick; }
+  .language-header.javascript {
+    background: coral; }
+  .language-header.haml {
+    background: cornflowerblue; }
+  .language-header.php {
+    background: forestgreen; }
+  .language-header.json {
+    background: darkslategray; }
+  .language-header.jsx {
+    background: indigo; }
+
+pre[class*=language-] {
+  margin-top: 0; }

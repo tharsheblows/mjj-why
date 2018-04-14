@@ -16,8 +16,12 @@ function mjj_why_code_highlighting( $attributes ){
 	if ( empty( $attributes['highlighting'] ) ) {
 			return;
 	} 
+	$language = ( !empty( $attributes['language'] ) ) ? $attributes['language'] : 'css';
+	$class = esc_attr( $language );
+	$class_name= strtoupper( $class );
+	$pre_class = 'language-' . $class;
 
-	return '<pre class="language-javascript"><code>' . wp_kses_post( $attributes['highlighting'] ) . '</code></pre>';
+	return "<div class=\"language-header $class\">$class_name</div><pre class=\"$pre_class\"><code>" . wp_kses_post( $attributes['highlighting'] ) . '</code></pre>';
 }
 
 function mjj_why_code_highlighting_assets () {

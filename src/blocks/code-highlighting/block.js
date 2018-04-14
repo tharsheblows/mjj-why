@@ -8,14 +8,16 @@
 import './style.scss'
 import './editor.scss'
 
-var Prism = require('prismjs');
-var loadLanguages = require('prismjs/components/index.js');
+const Prism = require('prismjs');
+const loadLanguages = require('prismjs/components/index.js');
+const autosize = require('autosize')
 
 const { __ } = wp.i18n // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks // Import registerBlockType() from wp.blocks
+const { registerBlockType, InspectorControls } = wp.blocks // Import registerBlockType() from wp.blocks
 
 const {
-	TextareaControl
+	TextareaControl,
+	SelectControl
 } = wp.components
 
 const { Component } = wp.element;
@@ -45,80 +47,101 @@ class MJJCodeHighlightingEdit extends Component {
 			this.props.attributes.highlighting 
 		) // set the initial state of code
 
-		this.onChangeCode = this.onChangeCode.bind(this)
-		this.onChangeLanguage = this.onChangeLanguage.bind(this)
-		this.createHighlighting = this.createHighlighting.bind(this)
+		this.onChangeValue = this.onChangeValue.bind( this )
+		this.createHighlighting = this.createHighlighting.bind( this )
+		this.autosizeTextarea = this.autosizeTextarea.bind( this )
 
-		this.id = "textarea-" + this.props.id
+		this.id = 'code-' + this.props.id
+		this.blockId = 'block-' + this.props.id
 
+		// as defined in http://prismjs.com/#languages-list
 		this.languages = {
 			'css' : 'css',
 			'javascript' : 'javascript',
-			'html' : 'html',
+			'markup' : 'html',
 			'php' : 'php',
 			'json' : 'JSON',
 			'jsx' : 'jsx'
 		}
 
+		this.languageKeys = Object.keys( this.languages )
+		loadLanguages( this.languageKeys )
+
 		this.createHighlighting()
 	}
 
-	onChangeCode ( newCode ) {
+	// handles setting the state for any change
+	onChangeValue ( attr, newValue ) {
+
+		let newObj = {}
+		newObj[ attr ] = newValue || ''
 
 		// so these are callbacks because it wasn't updating quite right on past
 		this.setState( 
-			{ code: newCode }, 
+			newObj, 
 			() => {
-				this.props.setAttributes( {
-					code: newCode
-				} )
+				this.props.setAttributes( newObj )
+				if( attr == 'code' )
+					autosize.update( this.textArea )
 			}
 		)
 
 	}
 
-	onChangeLanguage ( newLanguage ) {
-		// so these are callbacks because it wasn't updating quite right on past
-		this.setState( 
-			{ language: newLanguage }, 
-			() => {
-				this.props.setAttributes( {
-					language: newLanguage
-				} )
-			}
-		)
-
-	}
-
-	createHighlighting() {
+	createHighlighting () {
 		let element = document.getElementById( this.id )
 		let language = this.state.language
-
-		let html = Prism.highlight( this.state.code, Prism.languages.css, 'css')
+		let html = Prism.highlight( this.state.code, Prism.languages[language], language )
 		this.props.setAttributes( {
 			highlighting: html
 		} )
 		return( { __html: html } )
 	}
 
+	autosizeTextarea () {
+		this.textArea = document.getElementById( this.blockId ).querySelector( 'textarea' )
+		autosize( this.textArea )
+	}
+
+	componentDidUpdate () {
+		this.autosizeTextarea()
+	}
+
 	render () {
 		let code = this.state.code
-		let languageClassName = 'language-' + this.state.language 
+
+		let language = ( this.state.language ) || 'css'
+		let languageClassName = 'language-' + language
+		let headerClassName = 'language-header ' + language 
+		let languageHeading = language.toUpperCase()
+		
 		return (
 		<div>
-			<pre>
+			<div className={ headerClassName }>
+				{ languageHeading }
+			</div>
+			<pre className={ languageClassName }>
 				<code id={ this.id } className={ languageClassName } dangerouslySetInnerHTML={ this.createHighlighting() }></code>
 			</pre>
 			{
 				( !! this.props.focus ) &&
 					<div>
-						<div className="error" style={{ 'margin-left': '0' }}>
-							<p>hardcoded to css at the moment, add in &lt;select&gt; here for languages</p>	
-						</div>
+						<InspectorControls key='mjj-why-code-highlighting-inspector'>
+							<SelectControl
+								label={ __( 'Language' ) }
+								value={ this.state.language }
+								options={ this.languageKeys.map( ( key ) => ( {
+									value: key,
+									label: this.languages[key],
+								} ) ) }
+								onChange={ this.onChangeValue.bind( this, 'language' ) }
+							/>
+						</InspectorControls>
 						<TextareaControl
 							 label={ __( 'Code snippet goes here:' ) }
-							 onChange={ this.onChangeCode }
+							 onChange={ this.onChangeValue.bind( this, 'code' ) }
 							 value={ this.state.code }
+							 onFocus={ this.autosizeTextarea }
 						/>
 					</div>
 			}

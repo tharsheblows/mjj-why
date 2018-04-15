@@ -17,7 +17,7 @@ $block_directories = array(
 );
 
 foreach( $block_directories as $block_directory ){
-	require_once plugin_dir_path( __FILE__ ) . "blocks/{$block_directory}/block.php";
+	require_once plugin_dir_path( __FILE__ ) . "blocks/{$block_directory}/index.php";
 }
 
 /**

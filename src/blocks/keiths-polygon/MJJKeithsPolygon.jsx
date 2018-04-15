@@ -13,7 +13,7 @@ const {
 	createElement,
 } = wp.element;
 
-class MJJWhyKeithsPolygon extends Component {
+class MJJKeithsPolygon extends Component {
 
 	constructor( props ) {
 		super( props );
@@ -35,4 +35,4 @@ class MJJWhyKeithsPolygon extends Component {
 	}
 }
 
-export default MJJWhyKeithsPolygon;
+export default MJJKeithsPolygon;

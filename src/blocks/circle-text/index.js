@@ -16,7 +16,7 @@ const {
 	TextControl
 } = wp.components
 
-import MJJCircleText from './component.jsx'
+import MJJCircleText from './MJJCircleText.jsx'
 
 /**
  * Register: aa Gutenberg Block.

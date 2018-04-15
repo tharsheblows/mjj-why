@@ -9,7 +9,7 @@
  * Webpack is compiling as the input file.
  */
 
-import './blocks/circle-text/block.js';
-import './blocks/github-gist/block.js';
-import './blocks/code-highlighting/block.js';
-import './blocks/keiths-polygon/block.js';
+import './blocks/circle-text/';
+import './blocks/github-gist/';
+import './blocks/code-highlighting/';
+import './blocks/keiths-polygon/';

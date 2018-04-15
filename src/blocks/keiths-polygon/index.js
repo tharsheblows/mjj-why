@@ -18,7 +18,7 @@ const {
 
 const { Component } = wp.element
 
-import MJJKeithsPolygon from './component.jsx'
+import MJJKeithsPolygon from './MJJKeithsPolygon.jsx'
 
 // this approach is from https://www.ibenic.com/create-gutenberg-block-displaying-post/
 class MJJKeithsPolygonEdit extends Component {

@@ -17,7 +17,7 @@ const {
 
 const { Component } = wp.element;
 
-import MJJGithubGist from './component.jsx'
+import MJJGithubGist from './MJJGithubGist.jsx'
 
 // this approach is from https://www.ibenic.com/create-gutenberg-block-displaying-post/
 class MJJGithubGistEdit extends Component {

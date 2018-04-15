@@ -87,6 +87,8 @@
   },
   "devDependencies": {
     "autosize": "^4.0.1",
+    "dompurify": "^1.0.3",
+    "jsdom": "^11.7.0",
     "prismjs": "^1.14.0",
     "react-prism": "^4.3.2"
   }

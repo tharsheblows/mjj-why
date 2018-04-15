@@ -12,3 +12,4 @@
 import './blocks/circle-text/block.js';
 import './blocks/github-gist/block.js';
 import './blocks/code-highlighting/block.js';
+import './blocks/keiths-polygon/block.js';

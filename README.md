@@ -24,6 +24,12 @@ NB: This isn't for production use at all, it's not responsive for one thing and 
 For when your client wants to put three red circles with text and links on random pages as callouts. The hover should be pink.
 
 ![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/circle-text/circle-text.png) 
+ 
+
+### code-highlighting
+This is *not* a code editor. It's a very simple code highlighting plugin which gives you the ability to post syntax highlighted code like they do over at css-tricks.com. It's built on [prism.js](http://prismjs.com/) and there's a lot more that could be done with it if someone should so desire.
+
+![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/code-highlighting/code-highlighting.png)
 
 ### github-gist
 This is [Daniel Bachhuber's Github Gist block](https://github.com/pantheon-systems/github-gist-gutenberg-block), almost. ~~I rewrote it in ES6 and it doesn't work as well. It doesn't update except when the block is unselected — you type in the url of a gist then have to unselect it for the gist to show up) whereas Daniel's does this as soon as the url is entered. I'm assuming I've missed out something basic, who knows? Not me.~~ Is it still better than using a metabox or shortcode though? I'm going with yes. (But if you are thinking "No, no it is not" then it's still ok, this gives you a shortcode you can use to do the same thing.)
@@ -33,6 +39,15 @@ edit a bit later: I ended up fixing the issues I was having. [This by Igor Beni�
 All in all, I *highly* recommend doing something similar to learn bits and pieces of anything. I asked Daniel if it was ok if I just copied and pasted some of his code and he was lovely about it. It helped to know where I wanted to go when figuring out how to get there. :) 
 
 ![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/github-gist/github-gist.png) 
+
+### keiths-polygon
+
+So named because I wanted to try out some stuff [Keith Devon](https://highrise.digital/) talked about at WordCamp London in his talk "future.css". His stuff looks waaaaay better of course. And this — the css bits of this — won't work in all browsers, it's not been completely adopted yet.
+
+FWIW, the css bits of this easily took the longest time of all this. The entire reason for this repo is so that I figure out what development process works for me with Gutenberg blocks. With this one I felt like I'm there, at least with the basic stuff. (Now to see if it works with more difficult functionality.... :) )
+
+![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/keiths-polygon/keiths-polygon.png) 
+
 
 ---
 

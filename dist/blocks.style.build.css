@@ -73,3 +73,39 @@ div[data-type='mjj-why/code-highlighting'] pre::before {
 
 pre[class*=language-] {
   margin-top: 0; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.why-oh-why {
+  overflow: hidden; }
+  .why-oh-why .left-polygon {
+    float: left;
+    width: 50%;
+    /* 	 The polygon is a shape that starts and ends at the first point. In this example the start and end is the upper left corner 0% 0% */
+    shape-outside: polygon(0% 0%, 100% 0, 5% 25%, 50% 50%, 25% 90%, 100% 100%, 0 100%);
+    -webkit-shape-outside: polygon(0% 0%, 100% 0, 5% 25%, 50% 50%, 25% 90%, 100% 100%, 0 100%);
+    clip-path: polygon(0% 0%, 100% 0, 5% 25%, 50% 50%, 25% 90%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0, 5% 25%, 50% 50%, 25% 90%, 100% 100%, 0 100%);
+    background-color: darkslateblue;
+    min-height: 500px;
+    clip-margin: 10px; }
+  .why-oh-why .right-polygon {
+    float: right;
+    width: 50%;
+    /* 	 The polygon is a shape that starts and ends at the first point. In this example the start and end is the upper left corner 0% 0% */
+    shape-outside: polygon(100% 0%, 0 0, 0% 25%, 50% 30%, 10% 65%, 50% 85%, 0% 100%, 100% 100%);
+    -webkit-shape-outside: polygon(100% 0%, 0 0, 0% 25%, 50% 30%, 10% 65%, 50% 85%, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 0%, 5% 0, 0% 25%, 50% 30%, 10% 65%, 50% 85%, 0% 100%, 100% 100%);
+    -webkit-clip-path: polygon(100% 0%, 5% 0, 0% 25%, 50% 30%, 10% 65%, 50% 85%, 0% 100%, 100% 100%);
+    background-color: darkslategray;
+    min-height: 500px;
+    clip-margin: 15px; }
+  .why-oh-why p.hemmed-in {
+    font-family: sans-serif;
+    font-size: 150%;
+    margin-top: 0;
+    text-align: center;
+    margin-top: 40px; }

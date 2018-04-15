@@ -12,7 +12,8 @@
 $block_directories = array(
 	'circle-text',
 	'github-gist',
-	'code-highlighting'
+	'code-highlighting',
+	'keiths-polygon'
 );
 
 foreach( $block_directories as $block_directory ){

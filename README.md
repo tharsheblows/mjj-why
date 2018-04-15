@@ -62,6 +62,7 @@ Below you will find some information on how to run scripts.
 - Watches for any changes and reports back any errors in your code.
 
 ## 👉  `npm run build`
+note: at the moment, this is breaking the css a little bit. It's probably something I'm not doing quite right but if you are using this, please realise that at the moment, with `create-guten-block` ejected, npm run build will leave out some styles.
 - Use to build production code for your block inside `dist` folder.
 - Runs once and reports back the gzip file sizes of the produced code.
 

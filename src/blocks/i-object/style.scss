@@ -1,0 +1,23 @@
+.wp-block-mjj-why-i-object{
+
+	div.view{
+		border: 3px solid white;
+		padding: 1em;
+
+		&.red{
+			border-color: red;
+		}
+		&.yellow{
+			border-color: yellow;
+		}
+		&.limegreen{
+			border-color: limegreen;
+		}
+		&.greenyellow{
+			border-color: greenyellow;
+		}
+		&.orange{
+			border-color: yellow;
+		}
+	}
+}

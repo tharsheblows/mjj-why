@@ -109,3 +109,22 @@ pre[class*=language-] {
     margin-top: 0;
     text-align: center;
     margin-top: 40px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-mjj-why-i-object div.view {
+  border: 3px solid white;
+  padding: 1em; }
+  .wp-block-mjj-why-i-object div.view.red {
+    border-color: red; }
+  .wp-block-mjj-why-i-object div.view.yellow {
+    border-color: yellow; }
+  .wp-block-mjj-why-i-object div.view.limegreen {
+    border-color: limegreen; }
+  .wp-block-mjj-why-i-object div.view.greenyellow {
+    border-color: greenyellow; }
+  .wp-block-mjj-why-i-object div.view.orange {
+    border-color: yellow; }

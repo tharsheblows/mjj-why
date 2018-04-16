@@ -36,3 +36,12 @@
  * that are used across the project.
 */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/prism/1.14.0/themes/prism-dark.min.css");
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-mjj-why-i-object .components-radio-control__option {
+  display: inline-block;
+  margin-right: 1em; }

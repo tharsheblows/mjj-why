@@ -11,7 +11,6 @@ const axios = require( 'axios' )
 
 import MJJIObjectEditView from './MJJIObjectEditView.jsx'
 
-// this approach is from https://www.ibenic.com/create-gutenberg-block-displaying-post/
 class MJJIObjectEdit extends Component {
 
 	static getInitialState( objection, severity ) {

@@ -26,6 +26,7 @@ function UpdateObjections( { objectionProps } ) {
 	let status = select( 'core/editor' ).getCurrentPost().status
 
 	// headers for the request :)
+	// You need these to get drafts
 	let headers = {
 		'X-WP-Nonce': wpApiSettings.nonce
 	}

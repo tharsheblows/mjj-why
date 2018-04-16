@@ -4,18 +4,40 @@
 
 function mjj_why_i_object_init() {
 	register_block_type( 'mjj-why/i-object', array(
-    	//'render_callback' => 'mjj_why_i_object_render'
+    	'render_callback' => 'mjj_why_i_object_render'
 	) );
 }
 add_action( 'init', 'mjj_why_i_object_init' );
 
+// Because I completely forgot about doing this bit, it needlessly duplicates the component code
+// I'll fix it next time I'm doing that sort of thing but for now... ;) 
 function mjj_why_i_object_render( $attributes ){
+	// pick the post id up from the page
+	$id = get_the_ID();
+	$objectionData = get_post_meta( $id, 'mjj_objections', true ); // we're only allowing one
+	
+	switch( $objectionData[ 'severity' ] ){
+		case '1':
+			$color = "limegreen view";
+			break;
+		case '2':
+			$color = "greenyellow view";
+			break;
+		case '3':
+			$color = "yellow view";
+			break;
+		case '4':
+			$color = "orange view";
+			break;
+		case '5':
+			$color = "red view";
+			break;
+		default:
+			$color = "yellow view";
+	}
 
-	// get the component we're using
-	$block_template = file_get_contents( plugin_dir_path( __FILE__ ) . "MJJIObject.jsx" );
-	// regex voodoo to get the php
-	$block_template_in_php = mjj_why_jsx_to_php( $attributes, $block_template );
-	return '<div class="wp-block-mjj-why-i-object">' . wp_kses_post( $block_template_in_php ) . '</div>';
+	$objection = wp_kses_post( $objectionData[ 'objection' ] );
+	return "<div class=\"wp-block-mjj-why-i-object\"><div class=\"$color\">the objection: $objection</div></div>"; // I'm so sorry but it's time for dinner
 }
 
 // Soooooooo to use the rest api for objects / object like things, we need to use register_rest_field because register_meta can't handle them

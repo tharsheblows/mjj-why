@@ -1,8 +1,8 @@
 /**
- * BLOCK: mjj-why-keiths-polygon
+ * BLOCK: mjj-why-i-object
  *
- * The idea for this ever so stylish block is from Keith Devon's talk on future.css
- * (Please note: he can actually design things that work well and look good)
+ * A block that uses register_rest_field to get and update postmeta. 
+ * This is proof of concept and I've done it as an exercise for me.
  */
 
 //  Import CSS.
@@ -23,19 +23,6 @@ import MJJIObjectEdit from './MJJIObjectEdit.jsx'
 import MJJIObjectSave from './MJJIObjectSave.jsx'
 
 
-/**
- * Register: aa Gutenberg Block.
- *
- * Registers a new block provided a unique name and an object defining its
- * behavior. Once registered, the block is made editor as an option to any
- * editor interface where blocks are implemented.
- *
- * @link https://wordpress.org/gutenberg/handbook/block-api/
- * @param  {string}   name     Block name.
- * @param  {Object}   settings Block settings.
- * @return {?WPBlock}          The block, if it has been successfully
- *                             registered; otherwise `undefined`.
- */
 registerBlockType( 'mjj-why/i-object', {
 
 	title: __( 'mjj-why - i object' ), // Block title.

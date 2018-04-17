@@ -40,8 +40,10 @@ function UpdateObjections( { objectionProps } ) {
 		revisionId = select( 'core/editor' ).getCurrentPostLastRevisionId() // it needs to be plus one but do that in the update callback
 	}
 
+	// I think I can't rely on _wpGutenbergPost for newly created drafts
 	let postId = select( 'core/editor' ).getCurrentPostId() // ID of the current post
-	let postPostUrl = wpApiSettings.root + 'wp/v2/posts/' + postId // where the request will go
+	let postType = select( 'core/editor' ).getCurrentPostType()
+	let postPostUrl = wpApiSettings.root + 'wp/v2/' + postType + 's/' + postId // where the request will go
 
 	axios( {
 		method: 'post',

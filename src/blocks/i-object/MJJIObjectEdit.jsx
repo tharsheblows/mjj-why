@@ -53,8 +53,8 @@ class MJJIObjectEdit extends Component {
 
 	componentDidMount () {
 
-		let postId = _wpGutenbergPost.id
-		let url = wpApiSettings.root + wpApiSettings.versionString + 'posts/' + postId
+		let url = _wpGutenbergPost._links.self[0].href // it's right there!
+		console.log( url )
 		let self = this 
 
 		// headers for the request :)
@@ -76,7 +76,7 @@ class MJJIObjectEdit extends Component {
 			})
 		})
 		.catch( function ( error ) {
-			console.log( 'error' )
+			console.log( error )
 		})
 	}
 
@@ -87,6 +87,7 @@ class MJJIObjectEdit extends Component {
 			severity: this.state.severity
 		}
 
+		console.log( this.state )
 		return (
 			<div className={ this.props.className } >
 			{
@@ -102,7 +103,7 @@ class MJJIObjectEdit extends Component {
   							<RadioControl
     						    label="Severity"
     						    help="1 is not so severe, 5 is just horrible"
-    						    selected={ this.state.severity }
+    						    selected={ this.state.severity.toString() }
     						    options={ [
     						        { label: '1', value: '1' },
     						        { label: '2', value: '2' },

@@ -9,3 +9,11 @@ It should:
 Currently the canonical source of truth is postmeta, although this approach will clutter up the postmeta table. A better approach might be to make the canonical source of truth as the attributes registered in registerBlockType. It would certainly make handling revisions easier.
 
 Saving to postmeta is handled by the MJJIObjectSave component.
+
+Rendered block:
+
+![Screenshot of rendered block](https://github.com/tharsheblows/mjj-why/blob/master/src/blocks/i-object/screenshot_rendered.png)
+
+Field:
+
+![Screenshot of json](https://github.com/tharsheblows/mjj-why/blob/master/src/blocks/i-object/screenshot_post_json.png)

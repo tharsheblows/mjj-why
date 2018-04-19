@@ -4,9 +4,9 @@
 For when clients want weird little designs in their site.
 
 The blocks are in src/blocks. (There's currently only one, it might stay this way forever.) Each has the following files:
-- block.js: registers the block
-- block.php: registers the block in php and handles server side rendering
-- component.jsx: the component used in edit when registering the block in block.js and also used as a template for the server side render (after a bit of regex)
+- index.js: registers the block
+- index.php: registers the block in php and handles server side rendering
+- [component].jsx: usually the component used in edit when registering the block in index.js and also, when possible, used as a template for the server side render (after a bit of regex)
 - editor.scss: editor specific scss that gets magically transformed by the wonderful Create Guten Block script
 - style.scss: styles loaded on front and back end, same magic as above
 
@@ -48,6 +48,9 @@ FWIW, the css bits of this easily took the longest time of all this. The entire 
 
 ![Screenshot](https://raw.githubusercontent.com/tharsheblows/mjj-why/master/src/blocks/keiths-polygon/keiths-polygon.png) 
 
+### i-object 
+
+[A proof of concept for arbitrarily registered fields.](https://github.com/tharsheblows/mjj-why/blob/master/src/blocks/i-object/README.md)
 
 ---
 

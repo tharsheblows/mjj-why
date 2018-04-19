@@ -1,24 +1,29 @@
 const { select, withSelect, subscribe } = wp.data;
 const axios = require( 'axios' )
 
-// https://github.com/WordPress/gutenberg/tree/master/data#withselect-mapselecttoprops-function--function
-// this handles the logic of when to save to the data and what to save.
-//
-// What I want this to do is save postmeta for the draft and subsequent revisions and then, when it's published, only update
-// the published post when it's updated. This is proof of concept.
-// 
-// It goes like this:
-// 1 -- if the post is not saving, isSavingPost == false, then do nothing (phew, easy)
-// 2 -- if it's not publishing and the post status includes draft, find the next revision ID
-// 3 -- save to the post id and send along the next revision ID if there is one. The update cb on register_rest_field will handle this
-// 		**note** register_rest_field doesn't cover revisions! So it's kind of gone anyway.
-//  
+/** 
+ *
+ * This handles updating the postmeta. In general it should:
+ *  -- save / update the postmeta with the post_id of the parent post every time the post is saved, including auto-saves
+ *  -- save the postmeta with the post_id of a revision every time a revison is saved
+ *
+ * This approach — saving postmeta when a revision is created — will clutter up the postmeta table. 
+ * An excellent case could be made that this is *not* the correct approach and the data should be stored in attributes and 
+ * only saved to the postmeta table iff the revision is published. (This would require the canonical source of truth to be the
+ * attributes and if postmeta is different, postmeta gets updated. It's currently the other way around.)
+ *
+ * The revision logic needs to be double checked, I am not completely sure of the exact process WordPress uses when reverting to a revision.
+ *  
+ * https://github.com/WordPress/gutenberg/tree/master/data#withselect-mapselecttoprops-function--function
+ * this handles the logic of when to save to the data and what to save.
+ *
+ */
 function UpdateObjections( { objectionProps } ) {
 	
 	let isSaving = select( 'core/editor' ).isSavingPost()
 
 	if( ! isSaving ){
-		// run away, run away, nothing to do here
+		// If a post is not saving, don't do anything
 		return null
 	}
 
@@ -26,7 +31,7 @@ function UpdateObjections( { objectionProps } ) {
 	let status = select( 'core/editor' ).getCurrentPost().status
 
 	// headers for the request :)
-	// You need these to get drafts
+	// You need these to get drafts which require this
 	let headers = {
 		'X-WP-Nonce': wpApiSettings.nonce
 	}
@@ -53,7 +58,7 @@ function UpdateObjections( { objectionProps } ) {
 			mjj_objections: {
 				objection: objectionProps.attributes.objection, // the rest api will handle sanitization with the update callback 
 				severity: objectionProps.attributes.severity,
-				revision_id: revisionId
+				revision_id: revisionId // if there is a revision_id, the update callback in register_rest_field will save additional postmeta with that post_id
 			}
 		}
 	})

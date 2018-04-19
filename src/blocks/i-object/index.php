@@ -11,6 +11,7 @@
  *  - mjj_why_i_object_rest_field: Registers the postmeta data with the rest api so it is shown in posts
  *  - mjj_why_i_objections_get: The callback for get requests to the post's route; handles how the postmeta is presented in the rest api
  *  - mjj_objections_update: The callback for post requests to the post's route which contain the postmeta key; handles updating the post *and any listed revisions* postmeta
+ *  - mjj_objections_escape: Whitelists the keys and esacpes the values
  *
  */
 
@@ -53,8 +54,10 @@ function mjj_why_i_object_render( $attributes ){
 		return;
 	}
 
+	$severity = ( !empty ( $objectionData[ 'severity' ] ) ) ? $objectionData[ 'severity' ] : 1;
+
 	// this should be somewhere else and done differently but hey ho
-	switch( $objectionData[ 'severity' ] ){
+	switch( $severity ){
 		case '1':
 			$color = "limegreen view";
 			break;
@@ -75,7 +78,7 @@ function mjj_why_i_object_render( $attributes ){
 	}
 
 	// escape it
-	$objection = wp_kses_post( $objectionData[ 'objection' ] );
+	$objection = ( !empty( $objectionData[ 'objection' ] ) ) ? wp_kses_post( $objectionData[ 'objection' ] ) : '';
 	// what an ugly return! I will refactor later or never. :)
 	return "<div class=\"wp-block-mjj-why-i-object\"><div class=\"$color\">the objection: $objection</div></div>"; 
 }

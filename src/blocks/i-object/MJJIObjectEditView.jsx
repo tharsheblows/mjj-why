@@ -13,8 +13,9 @@ const {
 	createElement
 } = wp.element
 
-const { select, subscribe } = wp.data // THIS IS IT, this gives me access to eg /gutenberg/editor/store/selectors.js via select( 'core/editor' ).function()
-
+/**
+ * Renders the component when there is no focus on the block.
+ */
 class MJJIObjectEdit extends Component {
 
 	constructor() {

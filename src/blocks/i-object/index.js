@@ -25,11 +25,12 @@ import MJJIObjectSave from './MJJIObjectSave.jsx'
 
 registerBlockType( 'mjj-why/i-object', {
 
-	title: __( 'mjj-why - i object' ), // Block title.
-	icon: 'dashicons-admin-post', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+	title: __( 'mjj-why - i object' ),
+	icon: 'dashicons-admin-post', 
+	category: 'common', 
 
-	// this loads here from the attributes because I wanted to get a handle on updating the postmeta, I already know how to get it in :)
+// I've decided to leave these in, kind of for clarity? Like: "Look, here's what we're using."
+// I could easily be convinced that they should be removed.
 	attributes: {
 		objection: {
 			type: 'string'

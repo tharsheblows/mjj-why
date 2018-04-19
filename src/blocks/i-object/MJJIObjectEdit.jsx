@@ -7,16 +7,22 @@ const {
 
 const { Component } = wp.element;
 
+// I am using axios as the http client because I like it
 const axios = require( 'axios' )
 
 import MJJIObjectEditView from './MJJIObjectEditView.jsx'
 
+/**
+ * MJJIObjectEdit handles the working bits of the component; ie when the component has focus.
+ * It is responsible for setting the state based on the data saved as postmeta, although it loads from 
+ * the registered attributes in registerBlockType initially, while it is waiting for the new data to load.
+ */
 class MJJIObjectEdit extends Component {
 
 	static getInitialState( objection, severity ) {
 
-		objection = ( objection ) || ''
-		severity = ( severity ) || ''
+		objection = ( objection ) || '' // default is no objection
+		severity = ( severity ) || 1	// and it's not severe
 
 		return {
 			objection: objection,
@@ -24,37 +30,61 @@ class MJJIObjectEdit extends Component {
 		}
 	}
 
-
 	constructor () {
 
 		super( ...arguments )
-		this.state = this.constructor.getInitialState( '', '' ) 
-		// set the initial state of objection -- you could do this from the attributes if you wanted a backup? I don't know
-		// right now it's empty so you can see it get the data
+
+		// the initial state will be set from whatever is in the attributes
+		// this state should last only as long as it takes for the postmeta request in componentDidMount () to run
+		// again, I am not in love with this
+		this.state = this.constructor.getInitialState( this.props.attributes.objection, this.props.attributes.severity )
 
 		this.onChangeValue = this.onChangeValue.bind(this)
 	}
 
-
+	/**
+	 * Handles when an input changes
+	 * @param  {string} 		attr     The attribute which has a changed input
+	 * @param  {string|integer} newValue The entered value
+	 * @return {null}              Nothing returned
+	 */
 	onChangeValue ( attr, newValue ) {
 
 		let newObj = {}
-		newObj[ attr ] = newValue || ''
+		newObj[ attr ] = newValue 
 
-		//  I'm still updating the attributes because well why not? I mean there might be a good argument but whatever
+		// set the state when something changes
 		this.setState( 
 			newObj, 
 			() => {
+				// update the attributes because I'm using them
 				this.props.setAttributes( newObj )
 			}
 		)
-
 	}
 
+	/**
+	 * Updates the attributes
+	 * @param  {object} attributes An object with keys 'objection' and 'severity'
+	 * @return {null}              Nothing returned
+	 */
+	updateAttributes( attributes ){
+		this.props.setAttributes({
+			objection: attributes.objection,
+			severity: attributes.severity
+		})
+	}
+
+	/**
+	 * This handles loading the postmeta data from the post endpoint.
+	 * @return {null} Nothing returned
+	 */
 	componentDidMount () {
 
-		let url = _wpGutenbergPost._links.self[0].href // it's right there!
-		console.log( url )
+		// I want the link to the post in the REST API
+		// it's right there! Is there a better place to get this? 
+		let url = _wpGutenbergPost._links.self[0].href 
+
 		let self = this 
 
 		// headers for the request :)
@@ -69,11 +99,19 @@ class MJJIObjectEdit extends Component {
 			headers: headers
 		})
 		.then( function( response ) {
+
 			let objectionData = response.data.mjj_objections
-			self.setState({
-				objection: objectionData.objection,
-				severity: objectionData.severity
-			})
+
+			if( objectionData ){
+				self.setState({
+					objection: objectionData.objection,
+					severity: objectionData.severity
+				},
+				() => { 
+					// postmeta is canonical source of truth
+					self.updateAttributes( self.state )
+				})
+			}
 		})
 		.catch( function ( error ) {
 			console.log( error )
@@ -81,13 +119,13 @@ class MJJIObjectEdit extends Component {
 	}
 
 	render () {
+
 		let focus = this.props.focus 
 		let attributes = {
 			objection: this.state.objection,
 			severity: this.state.severity
 		}
 
-		console.log( this.state )
 		return (
 			<div className={ this.props.className } >
 			{

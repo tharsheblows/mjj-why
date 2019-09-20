@@ -4,7 +4,7 @@
  *
  * Enqueue CSS/JS of all the blocks.
  *
- * @since 	1.0.0
+ * @since   1.0.0
  * @package CGB
  */
 
@@ -48,18 +48,20 @@ function mjj_why_editor_assets() {
 	wp_enqueue_script(
 		'mjj-why-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element' ) // Dependencies, defined above.
-		// filemtime( plugin_dir_path( __FILE__ ) . 'block.js' ) // Version: filemtime — Gets file modification time.
+		array( 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor' ), // Dependencies, defined above.
+		filemtime( plugin_dir_path( __FILE__ ) . '../dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+		true
 	);
 
 	// Styles.
-	wp_enqueue_style(
+	wp_register_style(
 		'mjj-why-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
-		// filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' ) // Version: filemtime — Gets file modification time.
+		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
+		filemtime( plugin_dir_path( __FILE__ ) . '../dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
 	);
+
 } // End function mjj_why_editor_assets().
 
 // Hook: Editor assets.
-add_action( 'enqueue_block_editor_assets', 'mjj_why_editor_assets' );
+add_action( 'init', 'mjj_why_editor_assets' );

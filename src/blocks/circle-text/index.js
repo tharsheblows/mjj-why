@@ -6,17 +6,15 @@
  */
 
 //  Import CSS.
-import './style.scss'
-import './editor.scss'
+import "./style.scss";
+import "./editor.scss";
 
-const { __ } = wp.i18n // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks // Import registerBlockType() from wp.blocks
+const { __ } = wp.i18n; // Import __() from wp.i18n
+const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
-const {
-	TextControl
-} = wp.components
+const { TextControl } = wp.components;
 
-import MJJCircleText from './MJJCircleText.jsx'
+import MJJCircleText from "./MJJCircleText.jsx";
 
 /**
  * Register: aa Gutenberg Block.
@@ -31,35 +29,35 @@ import MJJCircleText from './MJJCircleText.jsx'
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'mjj-why/circle-text', {
 
-	title: __( 'mjj-why - text in a red circle' ), // Block title.
-	icon: 'dashicons-admin-post', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+console.log("in circle text");
+registerBlockType("mjj-why/circle-text", {
+	title: "mjj-why - text in a red circle", // Block title.
+	icon: "dashicons-admin-post", // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	category: "common", // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 
 	attributes: {
 		circleText1: {
-			type: 'string'
+			type: "string"
 		},
 		circleText2: {
-			type: 'string'
+			type: "string"
 		},
 		circleText3: {
-			type: 'string'
+			type: "string"
 		},
 		circleLink1: {
-			type: 'string'
+			type: "string"
 		},
 		circleLink2: {
-			type: 'string'
+			type: "string"
 		},
 		circleLink3: {
-			type: 'string'
+			type: "string"
 		}
 	},
 
 	edit: props => {
-
 		const {
 			attributes: {
 				circleText1,
@@ -69,74 +67,72 @@ registerBlockType( 'mjj-why/circle-text', {
 				circleLink2,
 				circleLink3
 			},
-			focus,
+			isSelected,
 			className,
 			setAttributes
-		} = props
+		} = props;
 
-		function onChangeText ( attr, newText ) {
-			let newAttribute = {}
-			newAttribute[attr] = newText
-			setAttributes( newAttribute )
+		function onChangeText(attr, newText) {
+			let newAttribute = {};
+			newAttribute[attr] = newText;
+			setAttributes(newAttribute);
 		}
 
 		return (
-			<div className={ className } >
-			{
-				!! focus 
-					? 
-						<div>
-							<div class="wrapper">
-								<div class="circle">
-  									<span>
-  										<TextControl
-  											value={ circleText1 }
-  											onChange={ onChangeText.bind( this, 'circleText1' ) }
-  										/>
-  									</span>
-								</div>
-  								<TextControl
-  									label={ __( 'Link' ) }
-  									value={ circleLink1 }
-  									onChange={ onChangeText.bind( this, 'circleLink1' ) }
-  								/>
+			<div className={className}>
+				{!!isSelected ? (
+					<div>
+						<div class="wrapper">
+							<div class="circle">
+								<span>
+									<TextControl
+										value={circleText1}
+										onChange={onChangeText.bind(this, "circleText1")}
+									/>
+								</span>
 							</div>
-							<div class="wrapper">
-								<div class="circle">
-  									<span>
-  										<TextControl
-  											value={ circleText2 }
-  											onChange={ onChangeText.bind( this, 'circleText2' ) }
-  										/>
-  									</span>								
-								</div>
-   								<TextControl
-  									label={ __( 'Link' ) }
-  									value={ circleLink2 }
-  									onChange={ onChangeText.bind( this, 'circleLink2' ) }
-  								/> 
-							</div>
-							<div class="wrapper">
-								<div class="circle">
-  									<span>
-  										<TextControl
-  											value={ circleText3 }
-  											onChange={ onChangeText.bind( this, 'circleText3' ) }
-  										/>
-  									</span>
-								</div>
-  								<TextControl
-  									label={ __( 'Link' ) }
-  									value={ circleLink3 }
-  									onChange={ onChangeText.bind( this, 'circleLink3' ) }
-  								/>
-							</div>
+							<TextControl
+								label={__("Link")}
+								value={circleLink1}
+								onChange={onChangeText.bind(this, "circleLink1")}
+							/>
 						</div>
-					:
-						<MJJCircleText attributes={ props.attributes } />
-			}
+						<div class="wrapper">
+							<div class="circle">
+								<span>
+									<TextControl
+										value={circleText2}
+										onChange={onChangeText.bind(this, "circleText2")}
+									/>
+								</span>
+							</div>
+							<TextControl
+								label={__("Link")}
+								value={circleLink2}
+								onChange={onChangeText.bind(this, "circleLink2")}
+							/>
+						</div>
+						<div class="wrapper">
+							<div class="circle">
+								<span>
+									<TextControl
+										value={circleText3}
+										onChange={onChangeText.bind(this, "circleText3")}
+									/>
+								</span>
+							</div>
+							<TextControl
+								label={__("Link")}
+								value={circleLink3}
+								onChange={onChangeText.bind(this, "circleLink3")}
+							/>
+						</div>
+					</div>
+				) : (
+					<MJJCircleText attributes={props.attributes} />
+				)}
 			</div>
-		)	
+		);
 	},
 
 	/**
@@ -147,7 +143,7 @@ registerBlockType( 'mjj-why/circle-text', {
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
-	save () {
-		return null
+	save() {
+		return null;
 	}
-} )
+});

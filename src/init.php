@@ -26,13 +26,13 @@ function mjj_why_block_assets() {
 	wp_enqueue_style(
 		'mjj-why-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-blocks' ) // Dependency to include the CSS after it.
+		array( 'wp-editor' ) // Dependency to include the CSS after it.
 		// filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' ) // Version: filemtime — Gets file modification time.
 	);
 } // End function mjj_why_block_assets().
 
 // Hook: Frontend assets.
-add_action( 'enqueue_block_assets', 'mjj_why_block_assets' );
+add_action( 'init', 'mjj_why_block_assets' );
 
 /**
  * Enqueue Gutenberg block assets for backend editor.

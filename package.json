@@ -93,7 +93,7 @@
   },
   "devDependencies": {
     "autosize": "^4.0.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "dompurify": "^2.0.17",
     "jsdom": "^11.7.0",
     "prismjs": "^1.21.0",
